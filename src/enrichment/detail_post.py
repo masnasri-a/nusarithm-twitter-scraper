@@ -94,7 +94,7 @@ def create_kafka_consumer():
     # Configuration for the Kafka consumer
     conf = {
         'bootstrap.servers': 'localhost:9092',  # Replace with your Kafka broker address
-        'group.id': 'test-1',  # Consumer group ID
+        'group.id': 'twitter-post-id',  # Consumer group ID
         'auto.offset.reset': 'earliest'  # Start from the beginning if no offset is stored
     }
 
