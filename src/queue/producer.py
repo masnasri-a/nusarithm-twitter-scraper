@@ -1,6 +1,9 @@
 
 from confluent_kafka import Producer
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 def produce(topic: str, key: str, value: dict):
 
@@ -13,9 +16,9 @@ def produce(topic: str, key: str, value: dict):
 
     def delivery_report(err, msg):
         if err is not None:
-            print(f"Message delivery failed: {err}")
+            logger.error(f"Message delivery failed: {err}")
         else:
-            print(f"Message delivered to {msg.topic()} [{msg.partition()}] @ offset {msg.offset()}")
+            logger.info(f"Message delivered to {msg.topic()} [{msg.partition()}] @ offset {msg.offset()}")
 
     # kirim pesan
     producer.produce(

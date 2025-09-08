@@ -14,6 +14,7 @@ parser.add_argument('--search', type=str, help='Search query')
 parser.add_argument('--search-from-file', action='store_true', help='Search using queries from query.txt')
 parser.add_argument('--kafka', action='store_true', help='Send results to Kafka')
 parser.add_argument('--max-scrolls', type=int, default=15, help='Maximum number of scrolls for timeline scraping (default: 15)')
+parser.add_argument('--enrich-details', action='store_true', help='Enrich tweet details from tweet IDs')
 
 if __name__ == "__main__":
     load_dotenv()
@@ -40,3 +41,6 @@ if __name__ == "__main__":
             max_scrolls=args.max_scrolls,
         )
         
+    if args.enrich_details:
+        from src.enrichment.detail_post import start_enrich_detail
+        start_enrich_detail()
