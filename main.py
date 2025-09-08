@@ -19,6 +19,7 @@ parser.add_argument('--enrich-details', action='store_true', help='Enrich tweet 
 parser.add_argument('--scrape-trending', action='store_true', help='Scrape trending topics from Twitter')
 parser.add_argument('--trending-search', action='store_true', help='Scrape trending topics and search for posts using them')
 parser.add_argument('--max-trending', type=int, default=10, help='Maximum number of trending topics to collect (default: 10)')
+parser.add_argument('--annotate-posts', action='store_true', help='Annotate posts with sentiment and emotion')
 
 if __name__ == "__main__":
     load_dotenv()
@@ -77,3 +78,7 @@ if __name__ == "__main__":
     if args.enrich_details:
         from src.enrichment.detail_post import start_enrich_detail
         start_enrich_detail()
+        
+    if args.annotate_posts:
+        from src.enrichment.annotation import create_kafka_consumer
+        create_kafka_consumer()
